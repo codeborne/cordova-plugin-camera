@@ -103,7 +103,7 @@ cordova.define("cordova-plugin-camera.CameraProxy", function (require, exports, 
 
           image.onload = function () {
             var resizedImage =  new Image();
-            var canvas = resizeImage(this, targetWidth, targetHeight);
+            var canvas = resizedImageCanvas(this, targetWidth, targetHeight);
             resizedImage.src = canvas.toDataURL(contentType);
 
             resizedImage.onload = function () {
@@ -140,7 +140,7 @@ cordova.define("cordova-plugin-camera.CameraProxy", function (require, exports, 
 
         image.onload = function () {
           var resizedImage =  new Image();
-          var canvas = resizeImage(this, targetWidth, targetHeight);
+          var canvas = resizedImageCanvas(this, targetWidth, targetHeight);
           resizedImage.src = canvas.toDataURL(contentType);
 
           resizedImage.onload = function () {
@@ -171,7 +171,7 @@ cordova.define("cordova-plugin-camera.CameraProxy", function (require, exports, 
     return canvas.toDataURL(targetContentType).split(',')[1];
   }
 
-  function resizeImage(image, targetWidth, targetHeight) {
+  function resizedImageCanvas(image, targetWidth, targetHeight) {
     var canvas = document.createElement('canvas');
     var ratio = Math.max(targetWidth / image.width, targetHeight / image.height);
     var imageWidth = ratio * image.width;
